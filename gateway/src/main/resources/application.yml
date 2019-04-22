@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: biz-api
+          uri: lb://biz-api
+          predicates:
+            - Path= /biz-api/**
+          filters:
+            - StripPrefix=1
+
+        - id: act-server
+          uri: lb://act-server
+          predicates:
+            - Path= /act-server/act/**
+          filters:
+            - StripPrefix=1
+
+        - id: dapp-server
+          uri: lb://dapp-server
+          predicates:
+            - Path= /dapp-server/**
+          filters:
+            - StripPrefix=1
+
+
+
+
+#  cloud:
+#    gateway:
+#      locator:
+#        enabled: true
+server:
+  port: 20002
+
+
+
+
+

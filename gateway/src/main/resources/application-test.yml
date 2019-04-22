@@ -1,0 +1,26 @@
+spring:
+
+  kafka:
+      #      request.timeout.ms: 50000
+    consumer:
+      bootstrap-servers: 192.168.0.206:9093
+      enable-auto-commit: false
+      group-id: ${spring.application.name}
+    listener:
+      ack-mode: record
+
+
+  redis:
+    host: 127.0.0.1
+#    host: centos7-redis-mysql-01
+    port: 6379
+    timeout: 2s
+    database: 8
+
+gateway:
+  allowOrigins:
+    - http://192.168.0.206:7001
+    - http://192.168.0.131:7001
+    - http://127.0.0.1:5500
+    - http://192.168.0.145:5500
+  resubmitOpen: true

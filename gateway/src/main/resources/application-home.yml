@@ -1,0 +1,41 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: sample-auth
+          uri: lb://sample-auth
+          predicates:
+            - Path= /sample-auth/**
+          filters:
+            - StripPrefix=1
+
+
+  redis:
+    host: 192.168.2.38
+    port: 6379
+    timeout: 2s
+    database: 11
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        max-wait: 1000s
+
+gateway:
+  allowOrigins:
+    - http://192.168.0.206:7001
+    - http://192.168.0.131:7001
+    - http://127.0.0.1:5500
+    - http://192.168.0.145:5500
+
+  appInfos:
+    -
+     appId: android087b469d
+     secret: 8b99b35b6d4040e5a8c75b98a35efc72
+    -
+     appId: html50a787aea
+     secret: 5309ec4bc7bf4dbea6e9-e8fcb402da5
+
+hawkin:
+  auth:
+    secret: E47BE1845A9442919D1B63DD7B719E51
